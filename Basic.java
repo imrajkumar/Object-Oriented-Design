@@ -1,19 +1,37 @@
 package learnjava;
 
+class Wheel
+{
+	private double rim;
+	private double tire;
 
-class Gear
+	Wheel(double rim, double tire)
+	{
+		this.rim =rim;
+		this.tire=tire;
+	}
+
+	double getDiameter()
+	{
+		return rim+(tire*2);
+	}
+	double getCircumference()
+	{
+		return getDiameter()*3.14;
+	}
+}
+
+class Gear extends Wheel
 {
 	private int chainring;
 	private int cog;
-	private double rimDiameter;
-	private double tireDiameter;
+	
 
-	Gear(int chainring, int cog,double rimDiameter, double tireDiameter)
+	Gear(int chainring, int cog,double rim, double tire)
 	{
+		super(rim,tire);
 		this.chainring=chainring;
 		this.cog=cog;
-		this.rimDiameter =rimDiameter;
-		this.tireDiameter=tireDiameter;
 	}
 
 	double getRatio()
@@ -23,11 +41,11 @@ class Gear
 
 	double getGearInches()
 	{
-		return(getRatio()*(rimDiameter+(tireDiameter*2)));
+		return(getRatio()*(getDiameter()));
 	}
 }
 
-class Basic
+public class Basic
 {
 	public static void main(String[] args) {
 		Gear g1 = new Gear(52,11,26,1.5);
